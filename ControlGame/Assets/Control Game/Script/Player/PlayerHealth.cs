@@ -19,7 +19,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth - damage, 0, startingHealth);
         if (currentHealth > 0)
         {
-            animator.SetTrigger("IsHurt");
+            //animator.SetTrigger("IsHurt");
         }
         else
         {

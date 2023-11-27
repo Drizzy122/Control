@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fighter : MonoBehaviour
+public class EnemyFighter : MonoBehaviour
 {
     private Animator anim;
     public float cooldownTime = 2f;
@@ -11,29 +11,15 @@ public class Fighter : MonoBehaviour
     float lastClickedTime = 0;
     public float maxComboDelay = 1;
     bool isComboing = false;
-
+    public float attackDamage = 10f;
+    public GameObject player;
     private void Start()
     {
         anim = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
     void Update()
     {
-        /*
-        if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && anim.GetCurrentAnimatorStateInfo(0).IsName("hit1"))
-        {
-            anim.SetBool("hit1", false);
-        }
-        if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && anim.GetCurrentAnimatorStateInfo(0).IsName("hit2"))
-        {
-            anim.SetBool("hit2", false);
-        }
-        if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && anim.GetCurrentAnimatorStateInfo(0).IsName("hit3"))
-        {
-            anim.SetBool("hit3", false);
-            noOfClicks = 0;
-        }
-        */
-
         if (lastClickedTime > maxComboDelay)
         {
             noOfClicks = 0;
@@ -45,7 +31,7 @@ public class Fighter : MonoBehaviour
         if (Time.time > nextFireTime)
         {
             // Check for mouse input
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetKeyDown(KeyCode.F))
             {
                 OnClick();
 
@@ -67,6 +53,7 @@ public class Fighter : MonoBehaviour
         {
             isComboing = true;
             anim.SetTrigger("hit1");
+            
             //lastClickedTime = 0f;
         }
 
@@ -82,4 +69,15 @@ public class Fighter : MonoBehaviour
         }
     }
 
+    void Block()
+    {
+        // Add block logic here
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            player.GetComponent<PlayerHealth>().TakeDamage(attackDamage);
+        }
+    }
 }

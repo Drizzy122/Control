@@ -12,25 +12,6 @@ public class EnemyScript : MonoBehaviour
     private bool isLeftArrowPressed = false;
     private bool isUpArrowPressed = false;
     private bool isDownArrowPressed = false;
-
-    
-    [Header("Player Attack")]
-    private bool attacking = false;
-    public float attackSpeed = 5f;
-    public float attackDamage = 10f;
-    public float attackRange = 1f;
-    private float attackCooldown = 100f;
-    public List<GameObject> EIList = new List<GameObject>();
-
-
-    [Header("Animations")]
-    public Animator animator;
-
-    void Awake()
-    {
-        animator = GetComponent<Animator>();
-    }
-
     void Start()
     {
         // Initialization code can be placed here if needed
@@ -39,14 +20,14 @@ public class EnemyScript : MonoBehaviour
     void Update()
     {
         Movement();
-        Attack();
+       
         // Add calls to other methods like Attack() or Block() if needed
     }
 
     void Movement()
     {
-        HandleArrowKeyInput(KeyCode.D, ref isRightArrowPressed);
-        HandleArrowKeyInput(KeyCode.A, ref isLeftArrowPressed);
+        HandleArrowKeyInput(KeyCode.A, ref isRightArrowPressed);
+        HandleArrowKeyInput(KeyCode.D, ref isLeftArrowPressed);
         HandleArrowKeyInput(KeyCode.W, ref isUpArrowPressed);
         HandleArrowKeyInput(KeyCode.S, ref isDownArrowPressed);
 
@@ -106,17 +87,5 @@ public class EnemyScript : MonoBehaviour
         isLeftArrowPressed = false;
         isUpArrowPressed = false;
         isDownArrowPressed = false;
-    }
-
-    void Attack()
-    {
-        
-    }
-
-
-
-    void Block()
-    {
-        // Add block logic here
     }
 }
