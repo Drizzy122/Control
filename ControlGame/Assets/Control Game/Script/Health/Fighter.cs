@@ -7,9 +7,10 @@ public class Fighter : MonoBehaviour
     private Animator anim;
     public float cooldownTime = 2f;
     private float nextFireTime = 0f;
-    public static int noOfClicks = 0;
+    public int noOfClicks = 0;
     float lastClickedTime = 0;
-    float maxComboDelay = 1;
+    public float maxComboDelay = 1;
+    bool isComboing = false;
 
     private void Start()
     {
@@ -17,7 +18,7 @@ public class Fighter : MonoBehaviour
     }
     void Update()
     {
-
+        /*
         if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && anim.GetCurrentAnimatorStateInfo(0).IsName("hit1"))
         {
             anim.SetBool("hit1", false);
@@ -31,11 +32,13 @@ public class Fighter : MonoBehaviour
             anim.SetBool("hit3", false);
             noOfClicks = 0;
         }
+        */
 
-
-        if (Time.time - lastClickedTime > maxComboDelay)
+        if (lastClickedTime > maxComboDelay)
         {
             noOfClicks = 0;
+            lastClickedTime = 0;
+            isComboing = false;
         }
 
         //cooldown time
@@ -48,33 +51,34 @@ public class Fighter : MonoBehaviour
 
             }
         }
+        if (isComboing){
+            lastClickedTime += Time.deltaTime;
+
+        }
     }
 
     void OnClick()
     {
         //so it looks at how many clicks have been made and if one animation has finished playing starts another one.
-        lastClickedTime = Time.time;
         noOfClicks++;
 
-        // Use var references for animation state checks
-        var attack1 = anim.GetBool("hit1");
 
         if (noOfClicks == 1)
         {
-            anim.SetBool("hit1", true);
+            isComboing = true;
+            anim.SetTrigger("hit1");
+            //lastClickedTime = 0f;
         }
-
-        noOfClicks = Mathf.Clamp(noOfClicks, 0, 3);
 
         // Use exit time in Animator transitions and remove setBool(false) calls
-        if (noOfClicks >= 2 && attack1)
+        if (noOfClicks == 2 && isComboing)
         {
-            anim.SetBool("hit2", true);
+            anim.SetTrigger("hit2");
         }
 
-        if (noOfClicks >= 3 && anim.GetBool("hit2"))
+        if (noOfClicks == 3 && isComboing)
         {
-            anim.SetBool("hit3", true);
+            anim.SetTrigger("hit3");
         }
     }
 

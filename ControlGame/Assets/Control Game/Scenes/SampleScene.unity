@@ -428,6 +428,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownTime: 0.8
+  noOfClicks: 0
+  maxComboDelay: 2
 --- !u!1 &491389995
 GameObject:
   m_ObjectHideFlags: 0
