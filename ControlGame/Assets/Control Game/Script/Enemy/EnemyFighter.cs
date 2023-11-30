@@ -10,7 +10,7 @@ public class EnemyFighter : MonoBehaviour
     public int noOfClicks = 0;
     float lastClickedTime = 0;
     public float maxComboDelay = 1;
-    bool isComboing = false;
+    public bool isComboing = false;
     public float attackDamage = 10f;
     public GameObject player;
     private void Start()
@@ -73,11 +73,5 @@ public class EnemyFighter : MonoBehaviour
     {
         // Add block logic here
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            player.GetComponent<PlayerHealth>().TakeDamage(attackDamage);
-        }
-    }
+ 
 }

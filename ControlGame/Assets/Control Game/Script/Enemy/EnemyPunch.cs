@@ -9,7 +9,12 @@ public class EnemyPunch : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<PlayerHealth>().TakeDamage(attackDamage);
+            var isComboing = this.gameObject.GetComponentInParent<EnemyFighter>().isComboing;
+
+            if (isComboing)
+            {
+                other.gameObject.GetComponentInParent<PlayerHealth>().TakeDamage(attackDamage);
+            }
         }
     }
 }

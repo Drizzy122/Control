@@ -10,7 +10,7 @@ public class Fighter : MonoBehaviour
     public int noOfClicks = 0;
     float lastClickedTime = 0;
     public float maxComboDelay = 1;
-    bool isComboing = false;
+    public bool isComboing = false;
     public float attackDamage = 10f;
     public GameObject enemy;
     private void Start()
