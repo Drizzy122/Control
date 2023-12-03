@@ -12,6 +12,7 @@ public class Fighter : MonoBehaviour
     public float maxComboDelay = 1;
     public bool isComboing = false;
     public float attackDamage = 10f;
+    public float blockReduction = 0.5f;
     public GameObject enemy;
     private void Start()
     {
@@ -76,8 +77,7 @@ public class Fighter : MonoBehaviour
 
     void Block()
     {
-
+        enemy.GetComponent<EnemyHealth>().TakeDamage(blockReduction);
         anim.SetTrigger("block");
-
     }
 }
