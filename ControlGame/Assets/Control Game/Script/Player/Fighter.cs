@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Fighter : MonoBehaviour
 {
-    private Animator anim;
+    public  Animator anim;
     public float cooldownTime = 2f;
     private float nextFireTime = 0f;
     public int noOfClicks = 0;
@@ -43,10 +43,10 @@ public class Fighter : MonoBehaviour
             lastClickedTime += Time.deltaTime;
 
         }
-        if (Input.GetMouseButtonDown(1))
-        {
-            Block();
-        }
+        //if (Input.GetMouseButtonDown(1))
+        //{
+        //    Block();
+       // }
     }
 
     void OnClick()
@@ -75,9 +75,9 @@ public class Fighter : MonoBehaviour
         }
     }
 
-    void Block()
-    {
-        enemy.GetComponent<EnemyHealth>().TakeDamage(blockReduction);
-        anim.SetTrigger("block");
-    }
+   // void Block()
+   // {
+       // enemy.GetComponent<EnemyHealth>().TakeDamage(blockReduction);
+      //  anim.SetTrigger("block");
+   // }
 }
