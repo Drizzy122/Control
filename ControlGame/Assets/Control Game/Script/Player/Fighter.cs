@@ -14,6 +14,8 @@ public class Fighter : MonoBehaviour
     public float attackDamage = 10f;
     public float blockReduction = 0.5f;
     public GameObject enemy;
+
+    public BoxCollider damageTrigger;
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -43,14 +45,26 @@ public class Fighter : MonoBehaviour
             lastClickedTime += Time.deltaTime;
 
         }
-        //if (Input.GetMouseButtonDown(1))
-        //{
-        //    Block();
-       // }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+
+            damageTrigger.enabled = false;
+            Block();
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+
+            damageTrigger.enabled = true;
+            anim.SetBool("block", false);
+        }
+
     }
 
     void OnClick()
     {
+        anim.SetBool("block", false);
+
         //so it looks at how many clicks have been made and if one animation has finished playing starts another one.
         noOfClicks++;
 
@@ -74,10 +88,9 @@ public class Fighter : MonoBehaviour
             anim.SetTrigger("hit3");
         }
     }
-
-   // void Block()
-   // {
-       // enemy.GetComponent<EnemyHealth>().TakeDamage(blockReduction);
-      //  anim.SetTrigger("block");
-   // }
+    void Block()
+    {
+        enemy.GetComponentInParent<EnemyHealth>().TakeDamage(blockReduction);
+        anim.SetBool("block", true);
+    }
 }

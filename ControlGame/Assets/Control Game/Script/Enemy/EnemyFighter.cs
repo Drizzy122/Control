@@ -11,8 +11,10 @@ public class EnemyFighter : MonoBehaviour
     float lastClickedTime = 0;
     public float maxComboDelay = 1;
     public bool isComboing = false;
+    public float blockReduction = 0.5f;
     public float attackDamage = 10f;
     public GameObject player;
+    public BoxCollider damageTrigger;
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -41,10 +43,24 @@ public class EnemyFighter : MonoBehaviour
             lastClickedTime += Time.deltaTime;
 
         }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+
+            damageTrigger.enabled = false;
+            Block();
+        }
+
+        if (Input.GetKeyUp(KeyCode.G))
+        {
+
+            damageTrigger.enabled = true;
+            anim.SetBool("block", false);
+        }
     }
 
     void OnClick()
     {
+         anim.SetBool("block", false);
         //so it looks at how many clicks have been made and if one animation has finished playing starts another one.
         noOfClicks++;
 
@@ -71,7 +87,7 @@ public class EnemyFighter : MonoBehaviour
 
     void Block()
     {
-        // Add block logic here
+        player.GetComponentInParent<PlayerHealth>().TakeDamage(blockReduction);
+        anim.SetBool("block", true);
     }
- 
 }

@@ -252,11 +252,12 @@ MonoBehaviour:
   anim: {fileID: 92539329}
   cooldownTime: 0.8
   noOfClicks: 0
-  maxComboDelay: 2
+  maxComboDelay: 1
   isComboing: 0
   attackDamage: 1
-  blockReduction: 0.5
+  blockReduction: 0
   enemy: {fileID: 1813870172}
+  damageTrigger: {fileID: 2098743639}
 --- !u!114 &92539333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -606,7 +607,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 700024085}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -996,7 +997,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 183
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1073,7 +1074,7 @@ GameObject:
   - component: {fileID: 1099145059}
   - component: {fileID: 1099145062}
   - component: {fileID: 1099145063}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftGlove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1295,7 +1296,7 @@ GameObject:
   - component: {fileID: 1239861033}
   - component: {fileID: 1239861036}
   - component: {fileID: 1239861037}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightGlove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1482,7 +1483,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.52, y: 1, z: 0.47}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1813870175
 MeshRenderer:
@@ -1617,7 +1618,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 119
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1662,7 +1663,7 @@ GameObject:
   - component: {fileID: 2023047256}
   m_Layer: 0
   m_Name: BluePlayer
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1787,8 +1788,10 @@ MonoBehaviour:
   noOfClicks: 0
   maxComboDelay: 2
   isComboing: 0
+  blockReduction: 0
   attackDamage: 1
   player: {fileID: 2098743637}
+  damageTrigger: {fileID: 1813870174}
 --- !u!114 &2023047258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1881,7 +1884,7 @@ Transform:
   m_GameObject: {fileID: 2054136431}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.736, y: 1.460959, z: 2.6534193}
+  m_LocalPosition: {x: 0.736, y: 1.460959, z: 3.9}
   m_LocalScale: {x: 0.5751938, y: 0.93992317, z: 2.469167}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1916,7 +1919,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2054136431}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1973,7 +1976,7 @@ GameObject:
   - component: {fileID: 2098743639}
   - component: {fileID: 2098743642}
   m_Layer: 0
-  m_Name: DamageTrigger
+  m_Name: damageTrigger
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1988,7 +1991,7 @@ Transform:
   m_GameObject: {fileID: 2098743637}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 3.3624184}
+  m_LocalPosition: {x: 0.38, y: 0.02, z: 2.57}
   m_LocalScale: {x: 6.169801, y: 9.135155, z: 6.169801}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2013,7 +2016,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.49, y: 1, z: 0.29}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &2098743640
 MeshRenderer:
